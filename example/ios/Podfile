@@ -1,0 +1,15 @@
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+platform :ios, '10.0'
+use_frameworks!
+
+target 'BubbleSelectExample' do
+  # Pods for BubbleSelectExample
+  config = use_native_modules!
+  use_react_native!(:path => config["reactNativePath"])
+
+
+  pod 'react-native-bubble-select', :path => '../..'
+
+  use_native_modules!
+end
