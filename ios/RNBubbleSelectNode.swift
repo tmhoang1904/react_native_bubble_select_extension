@@ -53,13 +53,13 @@ class RNBubbleSelectNodeView: UIView {
     node.fontName = fontName ?? Node.Defaults.fontName
     node.fontSize = fontSize ?? Node.Defaults.fontSize
     node.fontColor = fontColor ?? Node.Defaults.fontColor
-    node.label.lineHeight = lineHeight
     node.borderColor = borderColor ?? Node.Defaults.borderColor
     node.borderWidth = borderWidth ?? Node.Defaults.borderWidth
     node.color = color ?? Node.Defaults.color
     node.text = text
     node.padding = padding ?? Node.Defaults.padding
     node.scaleToFitContent = scaleToFitContent
+    node.image = image
     
     if let selectedScale = selectedScale {
       node.selectedScale = selectedScale

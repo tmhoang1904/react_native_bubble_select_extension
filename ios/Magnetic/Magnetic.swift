@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-@objc public protocol MagneticDelegate: class {
+@objc public protocol MagneticDelegate: AnyObject {
     func magnetic(_ magnetic: Magnetic, didSelect node: Node)
     func magnetic(_ magnetic: Magnetic, didDeselect node: Node)
     @objc optional func magnetic(_ magnetic: Magnetic, didRemove node: Node)

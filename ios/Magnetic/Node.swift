@@ -10,14 +10,18 @@ import SpriteKit
 
 @objcMembers open class Node: SKShapeNode {
     
-    public lazy var label: SKMultilineLabelNode = { [unowned self] in
-        let label = SKMultilineLabelNode()
+    public lazy var label: SKLabelNode = { [unowned self] in
+        let label = SKLabelNode()
         label.fontName = Defaults.fontName
         label.fontSize = Defaults.fontSize
         label.fontColor = Defaults.fontColor
         label.verticalAlignmentMode = .center
-        label.width = self.frame.width
-        label.separator = " "
+        if #available(iOS 11.0, *) {
+            label.numberOfLines = 0
+            label.preferredMaxLayoutWidth = self.frame.width
+        } else {
+            // Fallback on earlier versions
+        }
         addChild(label)
         return label
     }()
@@ -242,7 +246,7 @@ import SpriteKit
      - Returns: A new node.
      */
     public convenience init(text: String? = nil, image: UIImage? = nil, color: UIColor, radius: CGFloat, marginScale: CGFloat = 1.01) {
-        let path = SKShapeNode(circleOfRadius: radius).path!
+        let path = SKShapeNode(rectOf: CGSize(width: radius * 2, height: radius * 2)).path!
         self.init(text: text, image: image, color: color, path: path, marginScale: marginScale)
     }
     
@@ -281,9 +285,9 @@ import SpriteKit
         - withLabelWidth: A custom width for the text label
      */
     public func update(radius: CGFloat, withLabelWidth width: CGFloat? = nil) {
-        guard let path = SKShapeNode(circleOfRadius: radius).path else { return }
+        guard let path = SKShapeNode(rectOf: CGSize(width: radius * 2, height: radius * 2)).path else { return }
         self.path = path
-        self.label.width = width ?? radius
+//        self.label.width = width ?? radius
         self.radius = radius
         regeneratePhysicsBody(withPath: path)
     }

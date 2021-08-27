@@ -44,7 +44,7 @@ class RNBubbleMagneticView: UIView {
   lazy var magneticView: MagneticView = {
     let magneticView = MagneticView()
     magnetic = magneticView.magnetic
-    magnetic.magneticDelegate = self
+    magnetic.magneticDelegate = self    
 //    magnetic.scene?.view?.showsFPS = true
 //    magnetic.scene?.view?.showsPhysics = true
 //    magnetic.scene?.view?.showsNodeCount = true
